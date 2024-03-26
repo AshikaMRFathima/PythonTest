@@ -6,7 +6,7 @@ from selenium.webdriver.common.selenium_manager import SeleniumManager
 
 
 driver = webdriver.Chrome()
-driver.implicitly_wait(10)
+driver.implicitly_wait(8)
 
 driver.get("http://staging.maqta.ae")
 title = driver.title
@@ -23,7 +23,7 @@ enter_password.send_keys('P@ssw0rd')
 click_login_btn = driver.find_element(By.ID, "step-btn")
 click_login_btn.click()
 
-time.sleep(3)
+time.sleep(4)
 
 
 click_on_menu = driver.find_element(By.ID, "burger-menu-nav")
