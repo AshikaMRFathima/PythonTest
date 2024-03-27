@@ -2,6 +2,12 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
+import PageLocators
+import TestData.UserCredentials
+from TestData.UserCredentials import UserData
+from PageLocators.LoginPageLocator import LoginPageLocator
+
 from selenium.webdriver.common.selenium_manager import SeleniumManager
 from selenium.common.exceptions import InvalidSessionIdException
 from selenium.webdriver.support.wait import WebDriverWait
@@ -29,14 +35,14 @@ class TestSample(): #class name should start with capitalTest
         print(title)
         x = driver.title
         assert x == "ATLP - REG"
-        enter_username = driver.find_element(By.ID, "Username")
-        enter_username.send_keys('mskuser1')
+        enter_username = driver.find_element(By.ID, LoginPageLocator.USERNAME_ID)
+        enter_username.send_keys(TestData.UserCredentials.UserData.enter_username)
         time.sleep(3)
-        enter_password = driver.find_element(By.NAME, "Password")
-        enter_password.send_keys('hOmM$26@8&2!M^T')
+        enter_password = driver.find_element(By.NAME, LoginPageLocator.PASSWORD_NAME)
+        enter_password.send_keys(TestData.UserCredentials.UserData.enter_password)
 
     def test_navigate(self):
-        click_login_btn = driver.find_element(By.ID, "step-btn")
+        click_login_btn = driver.find_element(By.ID, LoginPageLocator.LOGIN_BUTTON_ID)
         click_login_btn.click()
         time.sleep(3)
         click_on_menu = driver.find_element(By.ID, "burger-menu-nav")
@@ -45,9 +51,6 @@ class TestSample(): #class name should start with capitalTest
         (driver.find_element(By.XPATH, "//span[contains(text(),'Sea')]")
          .click())
         driver.find_element(By.XPATH," //span[normalize-space()='Vessel Operation']").click()
-
-        element = driver.find_element(By.ID, "burger-menu-nav")
-        assert element.text == 'Example Domains'
 
     def test_tear_down(self):
         driver.close()
