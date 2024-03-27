@@ -17,10 +17,10 @@ class TestSample(): #class name should start with capitalTest
         global driver
         driver = webdriver.Chrome()
         driver.implicitly_wait(8)
-        driver.maximize_window()
+        #driver.maximize_window()
         yield  #this will call tear down method everytime
         driver.close()
-        driver.quit()
+        #driver.quit()
         print("Test completed")
 
 
@@ -32,20 +32,25 @@ class TestSample(): #class name should start with capitalTest
         assert x == "ATLP - REG"
 
         enter_username = driver.find_element(By.ID, "Username")
-        enter_username.send_keys('mscuser1')
+        enter_username.send_keys('mskuser1')
         time.sleep(3)
 
         enter_password = driver.find_element(By.NAME, "Password")
-        enter_password.send_keys('P@ssw0rd')
+        enter_password.send_keys('hOmM$26@8&2!M^T')
 
+    def test_navigate(self):
         click_login_btn = driver.find_element(By.ID, "step-btn")
         click_login_btn.click()
+        time.sleep(5)
 
         click_on_menu = driver.find_element(By.ID, "burger-menu-nav")
         click_on_menu.click()
+        time.sleep(5)
 
-        (driver.find_element(By.XPATH, "//*[@id='mat-expansion-panel-header-5']/span[1]/mat-panel-description/span")
+        (driver.find_element(By.XPATH, "//span[contains(text(),'Sea')]")
          .click())
         time.sleep(4)
+
+        driver.find_element(By.XPATH," //span[normalize-space()='Vessel Operation']").click()
 
 
