@@ -48,24 +48,34 @@ class TestAdminLogin():
         driver.find_element(By.XPATH, "//span[normalize-space()='Orders']").click()
         time.sleep(3)
 
-    def test_select_order(self):
         driver.find_element(By.XPATH, "//div[9]//div[1]//a[1]").click()
         driver.find_element(By.XPATH, "//a[@class='btn btn-info']").click() #create button for new order
         time.sleep(3)
 
         #Solution1
-        click_section = driver.find_element(By.XPATH, "/html/body/div[3]/div[3]/div[2]/div[1]/div/form/div[1]/div[1]/span/span[1]/span/span[2]/b")
-        click_section.click()
-        time.sleep(2)
+        #click_section = driver.find_element(By.XPATH, "/html/body/div[3]/div[3]/div[2]/div[1]/div/form/div[1]/div[1]/span/span[1]/span/span[2]/b")
+        #click_section.click()
+        #time.sleep(2)
 
-        click_section = driver.find_element(By.XPATH, "//input[@role='searchbox']")
-        click_section.send_keys("chicken")
-        time.sleep(3)
+        #click_section = driver.find_element(By.XPATH, "//input[@role='searchbox']")
+        #click_section.send_keys("chicken")
+        #time.sleep(3)
 
-        click_section.send_keys(Keys.ENTER)
-        time.sleep(2)
+        #click_section.send_keys(Keys.ENTER)
+        #time.sleep(2)
 
         #solution2
+        click_section = driver.find_element(By.XPATH,
+                                            "/html/body/div[3]/div[3]/div[2]/div[1]/div/form/div[1]/div[1]/span/span[1]/span/span[2]/b")
+        click_section.click()
+
+        select_values = driver.find_elements(By.XPATH, "//ul[@id='select2-category_id-ib-results']")
+        print(len(select_values))
+        for values in select_values:
+            if "chicken" in select_values:
+                values.click()
+                break
+
 
         # actions = ActionChains(driver)
         # actions.send_keys(keys.ARROW_DOWN).send_keys(Keys.ARROW_DOWN).send_keys(Keys.ARROW_DOWN).send_keys(Keys.ARROW_DOWN).perform()
