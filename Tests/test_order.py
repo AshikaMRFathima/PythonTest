@@ -46,7 +46,7 @@ class TestAdminLogin():
         ack.move_to_element(driver.find_element(By.XPATH, "//span[normalize-space()='The Sales']")).perform()
         print("Clicked on interaction page")
         driver.find_element(By.XPATH, "//span[normalize-space()='Orders']").click()
-        time.sleep(5)
+        time.sleep(3)
 
     def test_select_order(self):
         driver.find_element(By.XPATH, "//div[9]//div[1]//a[1]").click()
