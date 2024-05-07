@@ -1,3 +1,16 @@
-class UserData:
-  enter_username="mskuser1"
-  enter_password="hOmM$26@8&2!M^T"
+userCredentials = {
+  "username": "amal",
+  "password": "123456"
+}
+
+orderDetails = {
+  "section": "chic",
+  "emirates": "Abu Dhabi",
+  "user": "mohamed fathih",
+  "date": "07/05/2024",
+  "payment_method": "paylink",
+  "additional_request": "test order",
+  "subsection": "chicken",
+  "product": "Al Danat Chicken 1000g"
+
+}

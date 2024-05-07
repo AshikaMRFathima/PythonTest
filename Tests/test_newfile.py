@@ -34,7 +34,14 @@ class TestSample():  # class name should start with capitalTest
         enter_password = driver.find_element(By.NAME, "Password")
         enter_password.send_keys('P@ssw0rd')
         click_login_btn = driver.find_element(By.ID, "step-btn")
-        click_login_btn.click()
+        click_login_btn.click(),time.sleep(3)
+
+        if act_title == "dashboard":
+            self.driver.close()
+            assert True
+        else:
+            self.driver.close()
+            assert False
 
     def test_navigate_sea(self):
         click_on_menu = driver.find_element(By.ID, "burger-menu-nav")
