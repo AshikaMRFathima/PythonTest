@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common import keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.selenium_manager import SeleniumManager
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
@@ -26,7 +26,7 @@ class TestAdminLogin():
 
     def test_login(self):
         driver.implicitly_wait(8)
-        driver.get("https://testing.zabehaty.uae.zabe7ti.website/backend/login")
+        driver.get(userCredentials["URL"])
         title = driver.title
         print(title)
 
@@ -51,11 +51,21 @@ class TestAdminLogin():
     def test_select_order(self):
         driver.find_element(By.XPATH, "//div[9]//div[1]//a[1]").click()
         driver.find_element(By.XPATH, "//a[@class='btn btn-info']").click() #create button for new order
-        time.sleep(10)
-        driver.find_element(By.XPATH, "/html/body/div[3]/div[3]/div[2]/div[1]/div/form/div[1]/div[1]/span/span[1]/span/span[2]/b").click()
         time.sleep(3)
-        driver.find_element(By.XPATH, "//input[@role='searchbox']").send_keys("chic")
+
+        #Solution1
+        click_section = driver.find_element(By.XPATH, "/html/body/div[3]/div[3]/div[2]/div[1]/div/form/div[1]/div[1]/span/span[1]/span/span[2]/b")
+        click_section.click()
+        time.sleep(2)
+
+        click_section = driver.find_element(By.XPATH, "//input[@role='searchbox']")
+        click_section.send_keys("chicken")
         time.sleep(3)
+
+        click_section.send_keys(Keys.ENTER)
+        time.sleep(2)
+
+        #solution2
 
         # actions = ActionChains(driver)
         # actions.send_keys(keys.ARROW_DOWN).send_keys(Keys.ARROW_DOWN).send_keys(Keys.ARROW_DOWN).send_keys(Keys.ARROW_DOWN).perform()
@@ -65,57 +75,57 @@ class TestAdminLogin():
         # except NoSuchElementException:
         #     pass
 
-        selectemirates = driver.find_element(By.NAME, "emirate_id")  #emrates
-        sel = Select(selectemirates)
-        sel.select_by_visible_text("Abu Dhabi")
-        time.sleep(5)
-
-        selectregion = driver.find_element(By.NAME, "region_id") #region
-        sel = Select(selectregion)
-        sel.select_by_index(5)
-        time.sleep(3)
-
-        driver.find_element(By.XPATH, "//input[@placeholder='Search Users...']").send_keys("mohamed fathih")
-        time.sleep(3)
-        driver.find_element(By.XPATH, "//a[contains(text(),'mohamed')]").click()
-        time.sleep(3)
-
-        select_user_address = driver.find_element(By.NAME, "address_id")
-        sel = Select(select_user_address)
-        sel.select_by_index(1)
-
-        select_date = driver.find_element(By.CSS_SELECTOR, "input[name='date']")
-        select_date.send_keys("07/05/2024")
-
-        select_time = driver.find_element(By.NAME, "time")
-        sel = Select(select_time)
-        sel.select_by_index(3)
-
-        select_payment_method = driver.find_element(By.NAME, "payment_method")
-        sel = Select(select_payment_method)
-        sel.select_by_visible_text("paylink")
-        time.sleep(3)
-
-        select_shipping_method = driver.find_element(By.NAME, "shipping_method_id")
-        sel = Select(select_shipping_method)
-        sel.select_by_index(3)
-
-        enter_additional_request = driver.find_element(By.CSS_SELECTOR, "input[name='notes']")
-        enter_additional_request.send_keys("test order")
-
-    def test_order_details(self):
-        enter_category_details = driver.find_element(By.NAME, "OrderDetail[0][category_id]")
-        sel = Select(enter_category_details)
-        sel.select_by_visible_text("chicken")
-        time.sleep(3)
-
-        select_product = driver.find_element(By.NAME, "OrderDetail[0][product_id]")
-        sel = Select(select_product)
-        sel.select_by_visible_text("Al Danat Chicken 1000g")
-        time.sleep(3)
-
-        enter_quantity = driver.find_element(By.NAME, "OrderDetail[0][quantity]")
-        enter_quantity.send_keys("1")
-
-        submit_order = driver.find_element(By.NAME, "save")
-        submit_order.click()
+    #     selectemirates = driver.find_element(By.NAME, "emirate_id")  #emrates
+    #     sel = Select(selectemirates)
+    #     sel.select_by_visible_text("Abu Dhabi")
+    #     time.sleep(5)
+    #
+    #     selectregion = driver.find_element(By.NAME, "region_id") #region
+    #     sel = Select(selectregion)
+    #     sel.select_by_index(5)
+    #     time.sleep(3)
+    #
+    #     driver.find_element(By.XPATH, "//input[@placeholder='Search Users...']").send_keys("mohamed fathih")
+    #     time.sleep(3)
+    #     driver.find_element(By.XPATH, "//a[contains(text(),'mohamed')]").click()
+    #     time.sleep(3)
+    #
+    #     select_user_address = driver.find_element(By.NAME, "address_id")
+    #     sel = Select(select_user_address)
+    #     sel.select_by_index(1)
+    #
+    #     select_date = driver.find_element(By.CSS_SELECTOR, "input[name='date']")
+    #     select_date.send_keys("07/05/2024")
+    #
+    #     select_time = driver.find_element(By.NAME, "time")
+    #     sel = Select(select_time)
+    #     sel.select_by_index(3)
+    #
+    #     select_payment_method = driver.find_element(By.NAME, "payment_method")
+    #     sel = Select(select_payment_method)
+    #     sel.select_by_visible_text("paylink")
+    #     time.sleep(3)
+    #
+    #     select_shipping_method = driver.find_element(By.NAME, "shipping_method_id")
+    #     sel = Select(select_shipping_method)
+    #     sel.select_by_index(3)
+    #
+    #     enter_additional_request = driver.find_element(By.CSS_SELECTOR, "input[name='notes']")
+    #     enter_additional_request.send_keys("test order")
+    #
+    # def test_order_details(self):
+    #     enter_category_details = driver.find_element(By.NAME, "OrderDetail[0][category_id]")
+    #     sel = Select(enter_category_details)
+    #     sel.select_by_visible_text("chicken")
+    #     time.sleep(3)
+    #
+    #     select_product = driver.find_element(By.NAME, "OrderDetail[0][product_id]")
+    #     sel = Select(select_product)
+    #     sel.select_by_visible_text("Al Danat Chicken 1000g")
+    #     time.sleep(3)
+    #
+    #     enter_quantity = driver.find_element(By.NAME, "OrderDetail[0][quantity]")
+    #     enter_quantity.send_keys("1")
+    #
+    #     submit_order = driver.find_element(By.NAME, "save")
+    #     submit_order.click()

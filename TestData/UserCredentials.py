@@ -1,4 +1,5 @@
 userCredentials = {
+  "URL": "https://testing.zabehaty.uae.zabe7ti.website/backend/login",
   "username": "amal",
   "password": "123456"
 }
