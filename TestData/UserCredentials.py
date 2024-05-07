@@ -12,5 +12,7 @@ orderDetails = {
   "additional_request": "test order",
   "subsection": "chicken",
   "product": "Al Danat Chicken 1000g"
-
 }
+
+
+
