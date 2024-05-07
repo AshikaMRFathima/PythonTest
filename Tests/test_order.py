@@ -38,7 +38,7 @@ class TestAdminLogin():
 
         click_login_btn = driver.find_element(By.XPATH, LoginPageLocator.LOGIN_BUTTON_XPATH)
         click_login_btn.click()
-        time.sleep(3)
+        time.sleep(2)
         driver.find_element(By.XPATH, "//span[contains(text(),'اختار اللغة : ar')]").click()
         driver.find_element(By.XPATH, "//a[normalize-space()='English']").click()
 
